@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crear Cuenta | Mercedes-Benz El Salvador</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+    :root{
+        --black: #0a0a0a;
+        --charcoal: #111111;
+        --silver: #c0c0c0;
+        --mercedes-silver: #e8e8e8;
+        --accent: #00ADEF; /* Sutil toque tecnológico de Mercedes */
+    }
+    *{margin:0; padding:0; box-sizing:border-box;}
+    body{
+        font-family: 'Inter', sans-serif;
+        background-color: var(--black);
+        color: white;
+        display: flex;
+        min-height: 100vh;
+    }
+
+    /* LADO IZQUIERDO - IMAGEN */
+    .left-panel{
+        flex: 1.1;
+        background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=2070') center/cover no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 50px;
+        position: relative;
+    }
+    .logo{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-family: 'Cinzel', serif;
+        letter-spacing: 4px;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+    .logo img{ width: 42px; height: 42px; filter: brightness(0) invert(1); }
+    .left-content h1{
+        font-family: 'Cinzel', serif;
+        font-size: 48px;
+        font-weight: 400;
+        line-height: 1.1;
+        margin-bottom: 20px;
+    }
+    .left-content p{
+        color: var(--silver);
+        font-weight: 300;
+        font-size: 16px;
+        max-width: 380px;
+        line-height: 1.6;
+    }
+
+    /* LADO DERECHO - FORMULARIO */
+    .right-panel{
+        flex: 0.9;
+        background: #0f0f0f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        border-left: 1px solid #1e1e1e;
+    }
+    .form-container{
+        width: 100%;
+        max-width: 420px;
+    }
+    .form-header{ margin-bottom: 35px; }
+    .form-header h2{
+        font-family: 'Cinzel', serif;
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    .form-header span{
+        color: #888;
+        font-size: 14px;
+    }
+    .form-header span a{
+        color: white;
+        text-decoration: none;
+        border-bottom: 1px solid white;
+        padding-bottom: 2px;
+    }
+
+    .input-group{
+        display: flex;
+        gap: 16px;
+        margin-bottom: 18px;
+    }
+    .field{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 18px;
+    }
+    .field label{
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #999;
+        margin-bottom: 8px;
+    }
+    .field input, .field select{
+        background: #181818;
+        border: 1px solid #2a2a2a;
+        color: white;
+        padding: 14px 16px;
+        font-size: 14px;
+        outline: none;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+    .field input:focus, .field select:focus{
+        border-color: var(--silver);
+        background: #1f1f1f;
+    }
+    .field input::placeholder{ color: #555; }
+
+    .checkbox-area{
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin: 25px 0;
+        font-size: 12.5px;
+        color: #888;
+        line-height: 1.5;
+    }
+    .checkbox-area a{ color: var(--silver); text-decoration: underline; }
+    .checkbox-area input{ margin-top: 3px; accent-color: white; }
+
+    .btn-primary{
+        width: 100%;
+        background: white;
+        color: black;
+        border: none;
+        padding: 16px;
+        font-size: 13px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.4s ease;
+    }
+    .btn-primary:hover{
+        background: var(--silver);
+        letter-spacing: 3.5px;
+    }
+
+    .divider{
+        text-align: center;
+        margin: 30px 0 20px;
+        position: relative;
+        color: #444;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+    .divider::before, .divider::after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 38%;
+        height: 1px;
+        background: #222;
+    }
+    .divider::before{ left: 0; } .divider::after{ right: 0; }
+
+    .social-login{
+        display: flex;
+        gap: 12px;
+    }
+    .social-btn{
+        flex: 1;
+        background: transparent;
+        border: 1px solid #2a2a2a;
+        color: white;
+        padding: 12px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .social-btn:hover{ background: #1a1a1a; border-color: #444; }
+
+    .footer-note{
+        margin-top: 35px;
+        text-align: center;
+        font-size: 11px;
+        color: #555;
+        letter-spacing: 1px;
+    }
+
+    @media(max-width: 900px){
+        body{ flex-direction: column; }
+        .left-panel{ min-height: 380px; padding: 30px; }
+        .left-content h1{ font-size: 36px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="left-panel">
+    <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/Mercedes-Logo.svg" alt="Mercedes-Benz Logo">
+        Mercedes-Benz
+    </div>
+    <div class="left-content">
+        <h1>Bienvenido a lo<br>Extraordinario.</h1>
+        <p>Crea tu cuenta Mercedes-Benz El Salvador y gestiona tus vehículos, citas de servicio y experiencias exclusivas.</p>
+    </div>
+</div>
+
+<div class="right-panel">
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Crear cuenta</h2>
+            <span>¿Ya eres miembro? <a href="#">Iniciar sesión</a></span>
+        </div>
+
+        <form action="#" method="POST">
+            <div class="input-group">
+                <div class="field">
+                    <label>Nombre</label>
+                    <input type="text" placeholder="---" required>
+                </div>
+                <div class="field">
+                    <label>Apellido</label>
+                    <input type="text" placeholder="---" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Correo Electrónico</label>
+                <input type="email" placeholder="@email.com" required>
+            </div>
+
+            <div class="field">
+                <label>Teléfono (El Salvador)</label>
+                <input type="tel" placeholder="+503 0000 0000" required>
+            </div>
+
+            <div class="input-group">
+                <div class="field">
+                    <label>Contraseña</label>
+                    <input type="password" placeholder="Mínimo 8 caracteres" required>
+                </div>
+                <div class="field">
+                    <label>Departamento</label>
+                    <select required>
+                        <option value="" disabled selected>Seleccionar</option>
+                        <option>San Salvador</option>
+                        <option>Santa Ana</option>
+                        <option>San Miguel</option>
+                        <option>La Libertad</option>
+                        <option>Otro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="checkbox-area">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">Acepto los <a href="#">Términos y Condiciones</a> y autorizo a Mercedes-Benz El Salvador a contactarme sobre ofertas, servicios y eventos exclusivos.</label>
+            </div>
+
+            <button type="submit" class="btn-primary">Registrarme</button>
+
+            <div class="divider">o continuar con</div>
+
+            <div class="social-login">
+                <button type="button" class="social-btn">Google</button>
+                <button type="button" class="social-btn">Apple ID</button>
+            </div>
+
+            <p class="footer-note">© 2026 Mercedes-Benz El Salvador. Lujo que perdura.</p>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
