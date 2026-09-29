@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INNOVASOFT - Tecnología e Innovación</title>
+     <link rel="icon" type="image/x-icon" href="favicon.ico">
+     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- BOTÓN HOME -->
+    <div class="floating-home" onclick="showSection('inicio')" title="Ir al Inicio">
+        <i class="fa-solid fa-house"></i>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="navbar">
+            <a class="logo" onclick="showSection('inicio')">
+                <img src="soft.jpeg" alt="INNOVASOFT Logo" class="logo-img">
+            </a>
+
+            <!-- MENÚ HORIZONTAL DE NAVEGACIÓN -->
+            <ul class="nav-menu-horizontal">
+                <li><a href="#" id="link-inicio" class="active-link" onclick="showSection('inicio')" data-i18n="nav_home">Inicio</a></li>
+                <li><a href="#" id="link-nosotros" onclick="showSection('nosotros')" data-i18n="nav_about">Nosotros</a></li>
+                <li><a href="#" id="link-servicios" onclick="showSection('servicios')" data-i18n="nav_services">Servicios</a></li>
+                <li><a href="#" id="link-encuesta" onclick="showSection('encuesta')" data-i18n="nav_survey">Requerimientos</a></li>
+                <li><a href="#" id="link-presentacion" onclick="showSection('presentacion')" data-i18n="nav_presentation">Presentación</a></li>
+                
+                <!-- MI CUENTA CON DROPDOWN INTERACTIVO -->
+                <li>
+                    <a href="#" id="link-auth" onclick="toggleAccountMenu(event)">
+                        <span data-i18n="nav_login">Mi Cuenta</span> <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem;"></i>
+                    </a>
+                    <ul class="dropdown-menu" id="accountDropdown">
+                        <li><a href="#" onclick="showAuthMode('register')"><i class="fa-solid fa-user-plus"></i> <span data-i18n="menu_register">REGISTRAR</span></a></li>
+                        <li><a href="#" onclick="showAuthMode('login')"><i class="fa-solid fa-right-to-bracket"></i> <span data-i18n="menu_login">INICIAR SESIÓN</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- BUSCADOR -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" oninput="onSearchInput()" placeholder="Buscar..." data-i18n-ph="search_ph" autocomplete="off">
+                </div>
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+
+            <div class="nav-controls">
+                <select class="lang-select" id="langSelect" onchange="changeLanguage()">
+                    <option value="es">Español</option>
+                    <option value="en">English</option>
+                    <option value="pt">Português</option>
+                    <option value="zh">中文 (Mandarin)</option>
+                </select>
+
+                <button class="btn-theme" onclick="toggleTheme()">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <button class="burger-menu" onclick="toggleMenu()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENU HAMBURGUESA MOBILE -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-close" onclick="toggleMenu()">&times;</div>
+        <ul>
+            <li><a href="#" onclick="showSection('inicio'); toggleMenu();" data-i18n="nav_home">Inicio</a></li>
+            <li><a href="#" onclick="showSection('nosotros'); toggleMenu();" data-i18n="nav_about">Nosotros</a></li>
+            <li><a href="#" onclick="showSection('servicios'); toggleMenu();" data-i18n="nav_services">Servicios</a></li>
+            <li><a href="#" onclick="showSection('encuesta'); toggleMenu();" data-i18n="nav_survey">Requerimientos</a></li>
+            <li><a href="#" onclick="showSection('presentacion'); toggleMenu();" data-i18n="nav_presentation">Presentación</a></li>
+            <li>
+                <strong data-i18n="nav_login">Mi Cuenta</strong>
+                <ul class="sidebar-submenu">
+                    <li><a href="#" onclick="showAuthMode('register'); toggleMenu();"><i class="fa-solid fa-user-plus"></i> <span data-i18n="menu_register">REGISTRAR</span></a></li>
+                    <li><a href="#" onclick="showAuthMode('login'); toggleMenu();"><i class="fa-solid fa-right-to-bracket"></i> <span data-i18n="menu_login">INICIAR SESIÓN</span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main id="mainContainer">
+
+        <!-- 1. INICIO -->
+        <section id="inicio" class="section active">
+            <h2 data-i18n="features_title">Destacados</h2>
+            <div class="grid">
+                <div class="card" id="req-analisis-agil">
+                    <i class="fa-solid fa-bolt fa-2x" style="color: var(--primary);"></i>
+                    <h3 data-i18n="feat_1_title">Análisis Ágil</h3>
+                    <p data-i18n="feat_1_desc">Levantamiento funcional y no funcional de requerimientos adaptados a tu negocio.</p>
+                </div>
+                <div class="card" id="req-alta-seguridad">
+                    <i class="fa-solid fa-shield-halved fa-2x" style="color: var(--primary);"></i>
+                    <h3 data-i18n="feat_2_title">Alta Seguridad</h3>
+                    <p data-i18n="feat_2_desc">Arquitectura con protocolos modernos y cumplimiento de normas técnicas de calidad.</p>
+                </div>
+                <div class="card" id="req-multiplataforma">
+                    <i class="fa-solid fa-mobile-screen fa-2x" style="color: var(--primary);"></i>
+                    <h3 data-i18n="feat_3_title">Multiplataforma</h3>
+                    <p data-i18n="feat_3_desc">Soluciones optimizadas para Android, iOS, Windows y Chromebook.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. NOSOTROS -->
+        <section id="nosotros" class="section">
+            <h2 data-i18n="about_title">Sobre INNOVASOFT</h2>
+            <p style="margin-top: 0.5rem;" data-i18n="brand_subtitle">Tecnología e Innovación</p>
+            
+            <div class="grid">
+                <div class="card about-card">
+                    <img src="mision.png" alt="Misión INNOVASOFT" class="about-img" loading="lazy">
+                    <h3 data-i18n="mission_title">Misión</h3>
+                    <p data-i18n="mission_desc">Transformar las ideas complejas de nuestros clientes en requerimientos técnicos claros, eficientes y alcanzables para llegar al ojo público y objetivo.</p>
+                </div>
+                <div class="card about-card">
+                    <img src="vision.png" alt="Visión INNOVASOFT" class="about-img" loading="lazy">
+                    <h3 data-i18n="vision_title">Visión</h3>
+                    <p data-i18n="vision_desc">Consolidarnos como la empresa líder y referente regional en el desarrollo de software para el bienestar humano y la transformación organizacional, ofreciendo una red global de soporte con productos 100% seguros, confiables y de alto valor.
+                    <br>Puntos Clave:<br>
+                    <article><b>Innovación constante:</b> Creación de herramientas tecnológicas avanzadas y de vanguardia.</article>
+                    <article><b>Liderazgo regional:</b>Ser la opción número uno en el mercado de sistemas y tecnología.</article>
+                    <article><b>Calidad y confianza:</b> Garantizar estabilidad, seguridad y un servicio de excelencia que haga sentir a los usuarios en familia.</article></p>
+                </div>
+                <div class="card about-card">
+                    <img src="valores.png" alt="Valores INNOVASOFT" class="about-img" loading="lazy">
+                    <h3 data-i18n="values_title">Valores</h3>
+                    <p data-i18n="values_desc">Innovación, Transparencia, Seguridad, Accesibilidad y Calidad.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SERVICIOS -->
+        <section id="servicios" class="section">
+            <h2 data-i18n="services_title">Nuestros Servicios</h2>
+            
+            <div id="customPackageContainer"></div>
+
+            <div class="grid">
+                <div class="card" id="req-paquete-basico">
+                    <h3 data-i18n="basic_pkg_title">Paquete Básico</h3>
+                    <p data-i18n="basic_pkg_desc">Documentación de Requerimientos Funcionales básicos y Maquetación Web.</p>
+                    <h4 style="margin: 1rem 0;" data-i18n="basic_pkg_price">$299 USD</h4>
+                    <button class="btn-cta" onclick="prepareCheckout('Paquete Básico', 299)" data-i18n="btn_hire">Contratar</button>
+                </div>
+                <div class="card" id="req-paquete-empresarial">
+                    <h3 data-i18n="corp_pkg_title">Paquete Empresarial</h3>
+                    <p data-i18n="corp_pkg_desc">Levantamiento completo (Funcionales + No Funcionales) + Pruebas de usabilidad.</p>
+                    <h4 style="margin: 1rem 0;" data-i18n="corp_pkg_price">$599 USD</h4>
+                    <button class="btn-cta" onclick="prepareCheckout('Paquete Empresarial', 599)" data-i18n="btn_hire">Contratar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. ENCUESTA DE REQUERIMIENTOS -->
+        <section id="encuesta" class="section">
+            <h2 data-i18n="survey_main_title">Encuesta de Análisis de Requerimientos</h2>
+            <p style="margin-bottom: 1.5rem;" data-i18n="survey_subtitle">Indícanos qué características necesitas para generar tu paquete a medida:</p>
+
+            <form id="reqForm" onsubmit="handleSurveySubmit(event)">
+                <div class="form-group">
+                    <label for="surveyEmail" data-i18n="survey_label_email">Tu Correo Electrónico:</label>
+                    <input type="text" id="surveyEmail" required placeholder="usuario@gmail.com o usuario@hotmail.com">
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="survey_label_select">Selecciona los requerimientos necesarios:</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item" id="req-responsividad">
+                            <input type="checkbox" value="Responsividad Web" data-price="100"> 
+                            <span data-i18n="survey_opt_1">Responsividad (Adaptable a móviles y escritorio) (+$100 USD)</span>
+                        </label>
+                        <label class="checkbox-item" id="req-multiplataforma-opcion">
+                            <input type="checkbox" value="Multiplataforma (Windows/Android/iOS/Chromebook)" data-price="200"> 
+                            <span data-i18n="survey_opt_2">Multiplataforma (Windows, Android, iOS, Chromebook) (+$200 USD)</span>
+                        </label>
+                        <label class="checkbox-item" id="req-accesibilidad">
+                            <input type="checkbox" value="Accesibilidad Multimedia" data-price="80"> 
+                            <span data-i18n="survey_opt_3">Accesibilidad (Texto, Imagen, Audio, Video) (+$80 USD)</span>
+                        </label>
+                        <label class="checkbox-item" id="req-seguridad-avanzada">
+                            <input type="checkbox" value="Seguridad Avanzada" data-price="150"> 
+                            <span data-i18n="survey_opt_4">Seguridad Avanzada y Encriptación (+$150 USD)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="comments" data-i18n="survey_label_comments">Detalles adicionales del proyecto:</label>
+                    <textarea id="comments" rows="3" placeholder="Describe brevemente la idea de tu software..." data-i18n-ph="survey_ph_comments"></textarea>
+                </div>
+
+                <button type="submit" class="btn-cta" data-i18n="survey_btn_submit">Generar Paquete de Requerimientos</button>
+            </form>
+        </section>
+
+        <!-- 5. PRESENTACIÓN DE REQUERIMIENTOS -->
+        <section id="presentacion" class="section">
+            <h2 data-i18n="pres_title">Presentación: Requerimientos de Software</h2>
+            <p style="margin-top: 0.5rem;">Fundamentos básicos de la Ingeniería de Requisitos</p>
+
+            <div class="presentation-box" id="req-concepto">
+                <h3><i class="fa-solid fa-book-open"></i> ¿Qué es un Requerimiento?</h3>
+                <p>Un <strong>requerimiento de software</strong> es una condición o capacidad que debe poseer un sistema para satisfacer un contrato, una norma o la necesidad de un usuario. Describe qué debe hacer el software o bajo qué restricciones debe operar.</p>
+            </div>
+
+            <div class="presentation-box" id="req-elementos">
+                <h3><i class="fa-solid fa-layer-group"></i> Elementos de un Requerimiento</h3>
+                <ul class="elements-list">
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div><strong>Entrada (Inputs):</strong> Datos que recibe el sistema.</div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div><strong>Proceso:</strong> La lógica o regla de negocio aplicada.</div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div><strong>Salida (Outputs):</strong> El resultado o respuesta generada por el software.</div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div><strong>Restricciones:</strong> Límites tecnológicos, legales o de diseño.</div>
+                    </li>
+                </ul>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Características de un Requerimiento</h3>
+            <div class="grid">
+                <div class="card" id="req-univoco">
+                    <i class="fa-solid fa-bullseye fa-2x" style="color: var(--primary);"></i>
+                    <h3 style="margin-top: 0.5rem;">Unívoco y Claro</h3>
+                    <p>Posee únicamente una interpretación técnica posible.</p>
+                </div>
+                <div class="card" id="req-verificable">
+                    <i class="fa-solid fa-vial-circle-check fa-2x" style="color: var(--primary);"></i>
+                    <h3 style="margin-top: 0.5rem;">Verificable</h3>
+                    <p>Es posible diseñar una prueba para corroborar su cumplimiento.</p>
+                </div>
+                <div class="card" id="req-necesario">
+                    <i class="fa-solid fa-star fa-2x" style="color: var(--primary);"></i>
+                    <h3 style="margin-top: 0.5rem;">Necesario</h3>
+                    <p>Cubre una necesidad real del negocio o del usuario.</p>
+                </div>
+            </div>
+
+            <!-- SECCIÓN NUEVA: TIPOS DE REQUERIMIENTOS -->
+            <h3 style="margin-top: 2rem;" data-i18n="types_title">Tipos de Requerimientos</h3>
+            <div class="grid" id="req-tipos">
+                <div class="card">
+                    <h3>⚙️ <span data-i18n="func_title">Requerimientos Funcionales (El "Qué")</span></h3>
+                    <p data-i18n="func_desc">Definen las acciones, funciones y reglas de negocio que el sistema debe ejecutar al recibir ciertas entradas.</p>
+                    <p style="margin-top: 0.5rem;"><strong><span data-i18n="focus_label">Enfoque:</span></strong> <span data-i18n="func_focus">Operaciones directas del usuario.</span></p>
+                    <p style="margin-top: 0.5rem;"><strong><span data-i18n="example_label">Ejemplo:</span></strong> <span data-i18n="func_example">El sistema debe permitir al usuario iniciar sesión con su correo y contraseña.</span></p>
+                </div>
+                <div class="card">
+                    <h3>🚀 <span data-i18n="nonfunc_title">Requerimientos No Funcionales (El "Cómo")</span></h3>
+                    <p data-i18n="nonfunc_desc">Establecen las restricciones de calidad, rendimiento, seguridad y condiciones operativas del software.</p>
+                    <p style="margin-top: 0.5rem;"><strong><span data-i18n="focus_label">Enfoque:</span></strong> <span data-i18n="nonfunc_focus">Desempeño y atributos del sistema.</span></p>
+                    <p style="margin-top: 0.5rem;"><strong><span data-i18n="example_label">Ejemplo:</span></strong> <span data-i18n="nonfunc_example">La página debe responder a las búsquedas en un tiempo máximo de 2 segundos.</span></p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Ejemplos de Requerimientos</h3>
+            <div class="grid">
+                <div class="card" id="req-funcional">
+                    <h3><i class="fa-solid fa-user-lock"></i> Ejemplo 1: Requerimiento Funcional</h3>
+                    <p><strong>Descripción:</strong> "El sistema debe permitir a los usuarios autenticarse ingresando su correo electrónico y contraseña, enviando un código OTP de validación de 6 dígitos al correo registrado antes de conceder acceso."</p>
+                </div>
+                <div class="card" id="req-nofuncional">
+                    <h3><i class="fa-solid fa-gauge-high"></i> Ejemplo 2: Requerimiento No Funcional</h3>
+                    <p><strong>Descripción:</strong> "La plataforma debe procesar y desplegar el resultado de una búsqueda en un tiempo de respuesta máximo de 2 segundos cuando haya hasta 1,000 usuarios concurrentes."</p>
+                </div>
+            </div>
+
+            <div class="presentation-box" style="margin-top: 2rem; text-align: center;">
+                <h3><i class="fa-solid fa-cart-shopping"></i> ¿Listo para adquirir nuestros servicios?</h3>
+                <p style="margin-bottom: 1rem;">Crea tu cuenta rápidamente para empezar a cotizar y comprar tus paquetes de requerimientos.</p>
+                <button class="btn-cta" onclick="showAuthMode('register')">Registrarme para Comprar</button>
+            </div>
+        </section>
+
+        <!-- 6. AUTENTICACIÓN -->
+        <section id="auth" class="section">
+            <div id="authFormsView">
+                <!-- FORMULARIO DE INICIO DE SESIÓN -->
+                <div id="loginCard" class="card form-container">
+                    <h2>Iniciar Sesión</h2>
+                    <form onsubmit="handleLogin(event)" style="margin-top: 1rem;">
+                        <div class="form-group">
+                            <label>Correo Electrónico</label>
+                            <input type="text" id="loginEmail" required placeholder="usuario@gmail.com o usuario@hotmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="password" id="loginPass" required>
+                        </div>
+                        <button type="submit" class="btn-cta" style="width: 100%;">Ingresar y Comprar</button>
+                    </form>
+                </div>
+
+                <!-- FORMULARIO DE REGISTRO -->
+                <div id="registerCard" class="card form-container" style="display: none;">
+                    <h2>Crear Cuenta (Registro de Cliente)</h2>
+                    <form onsubmit="handleRegister(event)" style="margin-top: 1rem;">
+                        <div class="form-group">
+                            <label>Nombre Completo</label>
+                            <input type="text" id="regName" required placeholder="Juan Pérez">
+                        </div>
+                        <div class="form-group">
+                            <label>Correo Electrónico</label>
+                            <input type="text" id="regEmail" required placeholder="usuario@gmail.com o usuario@hotmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="password" id="regPass" required>
+                        </div>
+                        <button type="submit" class="btn-cta" style="width: 100%;">Registrarme para Comprar</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- VISTA PERFIL ACTIVO -->
+            <div id="userProfileView" style="display: none;">
+                <div class="card profile-card">
+                    <div class="profile-avatar">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <h2>Mi Perfil - INNOVASOFT</h2>
+                    <p style="color: var(--secondary);">Sesión iniciada correctamente</p>
+
+                    <div class="profile-info">
+                        <p><strong><i class="fa-solid fa-user"></i> Nombre:</strong> <span id="profileName"></span></p>
+                        <p style="margin-top:0.5rem;"><strong><i class="fa-solid fa-envelope"></i> Correo:</strong> <span id="profileEmail"></span></p>
+                        <p style="margin-top:0.5rem;"><strong><i class="fa-solid fa-list-check"></i> Requerimientos Solicitados:</strong> <span id="profileReqs">Ninguno registrado</span></p>
+                    </div>
+
+                    <button class="btn-cta" onclick="showSection('servicios')"><i class="fa-solid fa-bag-shopping"></i> Ir a Comprar Servicios</button>
+                    <br><br>
+                    <button class="btn-danger" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHECKOUT & TICKET -->
+        <section id="checkout" class="section">
+            <h2>Datos de Compra y Pago Seguro</h2>
+            <div class="card" style="max-width: 600px; margin: 0 auto;">
+                <p style="margin-bottom:1rem;" id="checkoutPackageInfo"><strong>Servicio:</strong> -</p>
+                <form id="paymentForm" onsubmit="processPayment(event)">
+                    <div class="form-group">
+                        <label>Nombre en la tarjeta</label>
+                        <input type="text" required id="payName">
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Tarjeta (16 dígitos obligatorios)</label>
+                        <input type="text" id="cardNumberInput" placeholder="1234567812345678" maxlength="16" required>
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <div class="form-group" style="flex: 1;">
+                            <label>Expiración</label>
+                            <input type="text" placeholder="MM/AA" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>CVC/CVV</label>
+                            <input type="password" maxlength="3" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-cta" style="width: 100%;">Pagar e Imprimir Ticket</button>
+                </form>
+
+                <div id="ticket" class="ticket">
+                    <h3><i class="fa-solid fa-receipt"></i> TICKET DE COMPRA - INNOVASOFT</h3>
+                    <hr style="margin: 0.5rem 0;">
+                    <p><strong>Empresa:</strong> INNOVASOFT</p>
+                    <p><strong>Lema:</strong> Tecnología e Innovación</p>
+                    <p><strong>Cliente:</strong> <span id="ticketClient"></span></p>
+                    <p><strong>Detalle:</strong> <span id="ticketService"></span></p>
+                    <p><strong>Monto:</strong> $<span id="ticketPrice"></span> USD</p>
+                    <p><strong>Estado del Pago:</strong> <span style="color: green;">Verificado (Pay Secure)</span></p>
+                    <p><strong>Fecha:</strong> <span id="ticketDate"></span></p>
+                    <br>
+                    <button class="btn-cta btn-secondary" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir Ticket</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4>INNOVASOFT</h4>
+                <p data-i18n="brand_subtitle">Tecnología e Innovación</p>
+                <div class="social-icons" style="margin-top: 1rem;">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4 data-i18n="footer_legal">Enlaces Legales</h4>
+                <ul>
+                    <li><a href="#" data-i18n="footer_legal_notice">Aviso Legal</a></li>
+                    <li><a href="#" data-i18n="footer_privacy">Política de Privacidad</a></li>
+                    <li><a href="#" data-i18n="footer_terms">Términos del Servicio</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 data-i18n="footer_contact">Contacto</h4>
+                <p><i class="fa-solid fa-envelope"></i> contacto@innovasoft.com</p>
+                <p><i class="fa-solid fa-phone"></i> +503 2200-0000</p>
+                <p><i class="fa-solid fa-location-dot"></i> San Martín, El Salvador</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p data-i18n="footer_rights">&copy; 2026 INNOVASOFT. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="script.js" ></script>
+</body>
+</html>
